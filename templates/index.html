@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>SN Electricals - Home</title>
+</head>
+<body>
+    <h1>Welcome to SN Electricals</h1>
+    <p>Welcome to SN Electricals, where innovation meets quality service. We’re committed to providing you with the best products and a seamless experience, both in-store and online. Explore our inventory, track expenditures, and stay tuned for exciting updates on our future online shopping experience!</p>
+    <nav>
+        <a href="{{ url_for('inventory_management') }}">Inventory and Sales</a> |
+        <a href="{{ url_for('expenditures') }}">Expenditure Tracking</a> |
+        <a href="{{ url_for('shop') }}">Online Shopping</a> |
+        <a href="{{ url_for('change_calculator') }}">Change Calculator</a> |
+        <a href="{{ url_for('export_expenditures') }}">Download Expenditures CSV</a>
+    </nav>
+
+
+    <section>
+        <h2>Inventory Management</h2>
+        <p> Explore a wide variety of products available in our store, carefully selected to meet your needs. Our inventory is continuously updated, ensuring you have access to fresh stock and competitive prices. Find detailed information on each product, including pricing, availability, and quantity in stock.</p>
+
+        <h2>Expenditure Tracking</h2>
+        <p>Stay on top of your store's expenses with real-time tracking of daily sales and expenditures. This feature allows you to monitor costs, track sold items, and manage financial records efficiently. With easy-to-use inputs and instant updates, you'll have a clear view of your store's financial health at any given moment.</p>
+        <h2>Online Shopping Experience</h2>
+        <p>Discover a seamless shopping journey right at your fingertips. While we're gearing up for an exciting online shopping launch, stay tuned for a feature that will offer an easy, convenient, and tech-driven experience for all your needs. Coming soon!</p>
+        <h2>Change Calculator</h2>
+        <p>Just to calculate the change</p>
+    </section>
+</body>
+</html>

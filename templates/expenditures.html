@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Expenditure Tracking</title>
+</head>
+<body>
+    <h1>Expenditure Tracking</h1>
+
+    <!-- Display available dates -->
+    <h2>Select Date</h2>
+    <form action="{{ url_for('expenditures') }}" method="GET">
+        <label for="date">Choose a date:</label>
+        <input type="date" id="date" name="date" value="{{ selected_date }}">
+        <button type="submit">View</button>
+    </form>
+
+    <!-- Expenditure History Table -->
+    <h2>Expenditure History for {{ selected_date }}</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Item Name</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Time Added</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in expenditures['items'] %}
+                <tr>
+                    <td>{{ item.name }}</td>
+                    <td>${{ item.price }}</td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.time }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('remove_expenditure') }}">
+                            <input type="hidden" name="date" value="{{ selected_date }}">
+                            <input type="hidden" name="item_name" value="{{ item.name }}">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Add Expenditure</h3>
+    <form method="POST" action="{{ url_for('expenditures') }}">
+        <label for="item_name">Item Name:</label>
+        <input type="text" id="item_name" name="item_name" required>
+
+        <label for="item_price">Amount:</label>
+        <input type="number" id="item_price" name="item_price" step="0.01" required>
+
+        <label for="item_quantity">Quantity:</label>
+        <input type="number" id="item_quantity" name="item_quantity" required>
+
+        <input type="hidden" name="date_added" value="{{ selected_date }}">
+
+        <button type="submit">Add Expenditure</button>
+    </form>
+
+    <nav>
+        <a href="{{ url_for('index') }}">Home</a> |
+        <a href="{{ url_for('inventory_management') }}">Inventory Management</a> |
+        <a href="{{ url_for('shop') }}">Online Shopping</a> |
+        <a href="{{ url_for('change_calculator') }}">Change Calculator</a>
+    </nav>
+</body>
+</html>
